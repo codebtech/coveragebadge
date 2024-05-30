@@ -1,0 +1,16 @@
+{
+    "name": "codebtech/coveragebadge",
+    "description": "Creates code coverage badge from a Clover XML file.",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/codebtech/coveragebadge",
+    "authors": [
+        {
+            "name": "Mohan Raj",
+            "homepage": "https://github.com/m0hanraj"
+        }
+    ],
+    "bin": [
+        "bin/coverage-badge"
+    ]
+}
