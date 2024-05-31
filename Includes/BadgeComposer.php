@@ -16,7 +16,7 @@ class BadgeComposer
     private array $inputFiles;
     private string $outputFile;
     private string $coverageName;
-    public int $totalCoverage = 0;
+    private int $totalCoverage = 0;
     private int $totalElements = 0;
     private int $checkedElements = 0;
 
@@ -30,6 +30,16 @@ class BadgeComposer
         $this->coverageName = $coverageName;
 
         $this->validateFiles($this->inputFiles, $this->outputFile);
+    }
+
+    /**
+     * Returns the total coverage percentage.
+     *
+     * @return int The total coverage percentage.
+     */
+    public function getTotalCoverage(): int
+    {
+        return $this->totalCoverage;
     }
 
     /**
