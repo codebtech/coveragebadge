@@ -1,6 +1,6 @@
 {
     "name": "codebtech/coveragebadge",
-    "description": "Creates code coverage badge from a Clover XML file.",
+    "description": "Creates code coverage badge from Clover XML files.",
     "type": "library",
     "license": "MIT",
     "homepage": "https://github.com/codebtech/coveragebadge",
@@ -10,7 +10,26 @@
             "homepage": "https://github.com/m0hanraj"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "BadgeManager\\": [""]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BadgeManager\\Tests\\": "Tests/"
+        }
+    },
     "bin": [
         "bin/coverage-badge"
-    ]
+    ],
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.10",
+        "phpunit/phpunit": "^11.1"
+    },
+    "scripts": {
+        "lint": "phpcs --ignore=/vendor/* --standard=PSR12 .",
+        "lint:fix": "phpcbf --ignore=/vendor/* --standard=PSR12 .",
+        "test": "phpunit --testdox"
+    }
 }

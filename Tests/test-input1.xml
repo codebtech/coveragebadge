@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1717008513">
+  <project timestamp="1717008513">
+    <file name="/var/www/html/wp-content/plugins/nuk-wp-block-plugin-template/inc/Base/ScriptsEnqueue.php">
+      <class name="NUK\WP\Inc\Base\ScriptsEnqueue" namespace="global">
+        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="12"/>
+      </class>
+      <line num="28" type="method" name="register" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="29" type="stmt" count="0"/>
+      <line num="37" type="method" name="enqueue_admin_scripts" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="41" type="stmt" count="0"/>
+      <line num="42" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="47" type="stmt" count="0"/>
+      <metrics loc="50" ncloc="27" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="4"/>
+    </file>
+    <file name="/var/www/html/wp-content/plugins/nuk-wp-block-plugin-template/inc/Init.php">
+      <class name="NUK\WP\Inc\Init" namespace="global">
+        <metrics complexity="9" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="20" coveredelements="12"/>
+      </class>
+      <line num="32" type="method" name="get_services" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="33" type="stmt" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="43" type="method" name="register_services" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="55" type="method" name="deactivate" visibility="public" complexity="3" crap="12" count="0"/>
+      <line num="56" type="stmt" count="0"/>
+      <line num="57" type="stmt" count="0"/>
+      <line num="58" type="stmt" count="0"/>
+      <line num="59" type="stmt" count="0"/>
+      <line num="71" type="method" name="register" visibility="private" complexity="1" crap="2" count="0"/>
+      <line num="72" type="stmt" count="0"/>
+      <line num="83" type="method" name="instantiate" visibility="private" complexity="2" crap="6" count="0"/>
+      <line num="84" type="stmt" count="0"/>
+      <line num="86" type="stmt" count="0"/>
+      <line num="88" type="stmt" count="0"/>
+      <line num="91" type="stmt" count="0"/>
+      <metrics loc="94" ncloc="50" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="20" coveredelements="5"/>
+    </file>
+    <file name="/var/www/html/wp-content/plugins/nuk-wp-block-plugin-template/inc/Interfaces/Registrable.php">
+      <metrics loc="29" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="4"/>
+    </file>
+    <metrics files="3" loc="173" ncloc="88" classes="2" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="0" elements="32" coveredelements="12"/>
+  </project>
+</coverage>
