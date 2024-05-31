@@ -30,6 +30,6 @@
     "scripts": {
         "lint": "phpcs --ignore=/vendor/* --standard=PSR12 .",
         "lint:fix": "phpcbf --ignore=/vendor/* --standard=PSR12 .",
-        "test": "phpunit --testdox --coverage-clover coverage/clover.xml --coverage-filter src/"
+        "test": "phpunit --testdox --coverage-clover coverage/clover.xml --coverage-html coverage --coverage-filter src/"
     }
 }
