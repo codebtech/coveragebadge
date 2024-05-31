@@ -101,7 +101,11 @@ class BadgeComposer
     private function processFile(string $inputFile): void
     {
         try {
-            $xml = new SimpleXMLElement(file_get_contents($inputFile));
+            $content = file_get_contents($inputFile);
+            if ($content === false) {
+                throw new Exception('Error reading file: ' . $inputFile);
+            }
+            $xml = new SimpleXMLElement($content);
             $metrics = $xml->xpath('//metrics');
             foreach ($metrics as $metric) {
                 $this->totalElements   += (int) $metric['elements'];
@@ -112,7 +116,7 @@ class BadgeComposer
             $this->totalCoverage += (int) round($coverageRatio * 100);
 
         } catch (Throwable $e) {
-            throw new Exception('Error processing file: ' . $e->getMessage());
+            throw new Exception($e->getMessage());
         }
     }
 
