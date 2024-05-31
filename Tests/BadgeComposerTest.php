@@ -1,11 +1,11 @@
 <?php
 
-namespace BadgeManager\Tests;
+namespace CodeB\CoverageBadge\Tests;
 
 use Exception;
 use ReflectionException;
 use PHPUnit\Framework\TestCase;
-use BadgeManager\Includes\BadgeComposer;
+use CodeB\CoverageBadge\BadgeComposer;
 
 class BadgeComposerTest extends TestCase
 {

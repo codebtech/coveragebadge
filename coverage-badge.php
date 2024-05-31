@@ -1,11 +1,10 @@
 <?php
 
-namespace BadgeManager;
+namespace CodeB\CoverageBadge;
 
 use Exception;
-use BadgeManager\Includes\BadgeComposer;
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/src/BadgeComposer.php';
 
 $inputFiles = $argv[1];
 $outputFile = $argv[2];
