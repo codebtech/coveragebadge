@@ -1,5 +1,7 @@
 # CoverageBadge
 
+![](./badges/php.svg)
+
 CoverageBadge is a library for creating an SVG coverage badge from a Clover XML file.
 
 ## Installation

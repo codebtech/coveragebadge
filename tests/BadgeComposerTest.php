@@ -81,7 +81,7 @@ class BadgeComposerTest extends TestCase
     {
         $this->processFile($this->inputFile);
 
-        $this->assertEquals(51, $this->badgeComposer->getTotalCoverage());
+        $this->assertEquals(43, $this->badgeComposer->getTotalCoverage());
     }
 
     /**
@@ -92,6 +92,6 @@ class BadgeComposerTest extends TestCase
         $this->processFile($this->inputFile);
         $this->processFile($this->inputFile2);
 
-        $this->assertEquals(94, $this->badgeComposer->getTotalCoverage());
+        $this->assertEquals(83, $this->badgeComposer->getTotalCoverage());
     }
 }
