@@ -1,8 +1,17 @@
-<?php
+<?php declare( strict_types = 1 );
 
 namespace CodeB\CoverageBadge;
 
 use Exception;
+use SimpleXMLElement;
+use Throwable;
+use function count;
+use function explode;
+use function file_exists;
+use function file_get_contents;
+use function file_put_contents;
+use function round;
+use function str_replace;
 
 /**
  * Class BadgeComposer
@@ -50,19 +59,18 @@ class BadgeComposer
      * @param array $inputFiles The array of input files to validate.
      * @param string $outputFile The output file to validate.
      *
-     * @return void
      * @throws Exception If any of the input files do not exist or if the output file is not provided.
      */
     private function validateFiles(array $inputFiles, string $outputFile): void
     {
         foreach ($inputFiles as $inputFile) {
             if (!file_exists($inputFile)) {
-                throw new \Exception("input file does not exist: " . $inputFile);
+                throw new Exception("input file does not exist: " . $inputFile);
             }
         }
 
         if (empty($outputFile)) {
-            throw new \Exception("output file name is mandatory");
+            throw new Exception("output file name is mandatory");
         }
     }
 
@@ -72,7 +80,6 @@ class BadgeComposer
      * This method iterates over the input files array and processes each file using the `processFile` method.
      * After processing all input files, the coverage is finalized using the `finalizeCoverage` method.
      *
-     * @return void
      * @throws Exception
      */
     public function run(): void
@@ -88,31 +95,30 @@ class BadgeComposer
      *
      * @param string $inputFile The path to the XML file to process.
      *
-     * @return void
      * @throws Exception When there is an error processing the file.
      *
      */
     private function processFile(string $inputFile): void
     {
         try {
-            $xml = new \SimpleXMLElement(file_get_contents($inputFile));
+            $xml = new SimpleXMLElement(file_get_contents($inputFile));
             $metrics = $xml->xpath('//metrics');
             foreach ($metrics as $metric) {
                 $this->totalElements   += (int) $metric['elements'];
                 $this->checkedElements += (int) $metric['coveredelements'];
             }
 
-            $coverage = round(($this->totalElements === 0) ? 0 : ($this->checkedElements / $this->totalElements) * 100);
-            $this->totalCoverage += $coverage;
-        } catch (Exception $e) {
-            throw new Exception('Error processing file: ' . $inputFile);
+            $coverageRatio = $this->totalElements ? $this->checkedElements / $this->totalElements : 0;
+            $this->totalCoverage += (int) round($coverageRatio * 100);
+
+        } catch (Throwable $e) {
+            throw new Exception('Error processing file: ' . $e->getMessage());
         }
     }
 
     /**
      * Finalize the coverage report by generating a badge with the average coverage across all input files.
      *
-     * @return void
      * @throws Exception If there is an error generating the badge.
      */
     private function finalizeCoverage(): void
@@ -120,7 +126,7 @@ class BadgeComposer
         $totalCoverage = $this->totalCoverage / count($this->inputFiles); // Average coverage across all files
         $template = file_get_contents(__DIR__ . '/../template/badge.svg');
 
-        $template = str_replace('{{ total }}', $totalCoverage, $template);
+        $template = str_replace('{{ total }}', (string) $totalCoverage, $template);
 
         $template = str_replace('{{ coverage }}', $this->coverageName, $template);
 
@@ -137,9 +143,9 @@ class BadgeComposer
             $color = '#4c1';     // Bright Green
         }
 
-        $template = str_replace('{{ total }}', $totalCoverage, $template);
         $template = str_replace('{{ color }}', $color, $template);
 
         file_put_contents($this->outputFile, $template);
     }
+
 }

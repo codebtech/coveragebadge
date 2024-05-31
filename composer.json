@@ -25,11 +25,17 @@
     ],
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.10",
-        "phpunit/phpunit": "^11.1"
+        "phpunit/phpunit": "^11.1",
+        "slevomat/coding-standard": "^8.15"
     },
     "scripts": {
-        "lint": "phpcs --ignore=/vendor/* --standard=PSR12 .",
-        "lint:fix": "phpcbf --ignore=/vendor/* --standard=PSR12 .",
+        "lint": "phpcs",
+        "lint:fix": "phpcbf",
         "test": "phpunit --testdox --coverage-clover coverage/clover.xml --coverage-html coverage --coverage-filter src/"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
