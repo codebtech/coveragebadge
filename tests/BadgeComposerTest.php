@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
 use Throwable;
+use function file_get_contents;
 
 class BadgeComposerTest extends TestCase
 {
@@ -15,7 +16,7 @@ class BadgeComposerTest extends TestCase
 
     private string $inputFile = __DIR__ . "/test-input1.xml";
     private string $inputFile2 = __DIR__ . "/test-input2.xml";
-    private string $outputFile = "output.svg";
+    private string $outputFile = __DIR__ . "/../badges/output.svg";
     private string $coverageName = "unit";
 
     /**
@@ -95,6 +96,40 @@ class BadgeComposerTest extends TestCase
         $this->processFile($this->inputFile2);
 
         $this->assertEquals(83, $this->badgeComposer->getTotalCoverage());
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function testItThrowsExceptionWhenFileProcessingFails(): void
+    {
+        $this->expectException(Throwable::class);
+        $this->expectExceptionMessage('Error reading file: invalid_file.xml');
+
+        $this->processFile('invalid_file.xml');
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function finalizeCoverage()
+    {
+        $method = (new ReflectionClass($this->badgeComposer))->getMethod('finalizeCoverage');
+
+        return $method->invoke($this->badgeComposer);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function testFinalizeCoverageCalculatesAverageCoverage(): void
+    {
+        $this->finalizeCoverage();
+
+        $outputFileContent = file_get_contents(__DIR__ . "/../badges/output.svg");
+        $this->assertStringContainsString('#e05d44', $outputFileContent);
+
+        $this->assertStringContainsString('unit', $outputFileContent);
     }
 
 }

@@ -31,7 +31,8 @@
     "scripts": {
         "lint": "phpcs",
         "lint:fix": "phpcbf",
-        "test": "phpunit --testdox --coverage-clover coverage/clover.xml --coverage-html coverage --coverage-filter src/"
+        "test": "phpunit --testdox --coverage-clover coverage/clover.xml --coverage-html coverage --coverage-filter src/",
+        "php:badge": "bin/coverage-badge coverage/clover.xml badges/php.svg PHP"
     },
     "config": {
         "allow-plugins": {
