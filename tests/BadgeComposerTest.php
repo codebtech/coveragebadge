@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
 use Throwable;
+use function file_get_contents;
 
 class BadgeComposerTest extends TestCase
 {
