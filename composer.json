@@ -12,12 +12,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "BadgeManager\\": [""]
+            "CodeB\\CoverageBadge\\": ["","src/"]
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BadgeManager\\Tests\\": "Tests/"
+            "CodeB\\CoverageBadge\\Tests\\": "Tests/"
         }
     },
     "bin": [
