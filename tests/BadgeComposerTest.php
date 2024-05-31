@@ -1,11 +1,13 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace CodeB\CoverageBadge\Tests;
 
-use Exception;
-use ReflectionException;
-use PHPUnit\Framework\TestCase;
 use CodeB\CoverageBadge\BadgeComposer;
+use Exception;
+use PHPUnit\Framework\TestCase;
+use ReflectionClass;
+use ReflectionException;
+use Throwable;
 
 class BadgeComposerTest extends TestCase
 {
@@ -29,7 +31,7 @@ class BadgeComposerTest extends TestCase
      */
     public function validateFiles(array $files, string $output)
     {
-        $method = (new \ReflectionClass($this->badgeComposer))->getMethod('validateFiles');
+        $method = (new ReflectionClass($this->badgeComposer))->getMethod('validateFiles');
 
         return $method->invoke($this->badgeComposer, $files, $output);
     }
@@ -40,7 +42,7 @@ class BadgeComposerTest extends TestCase
      */
     public function testErrorIsThrownWhenInputFileDoesNotExist(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Throwable::class);
         $this->expectExceptionMessage('input file does not exist: file_does_not_exist.xml');
 
         $this->validateFiles(
@@ -55,7 +57,7 @@ class BadgeComposerTest extends TestCase
      */
     public function testErrorIsThrownWhenOutputFileDoesNotExist(): void
     {
-        $this->expectException(\Exception::class);
+        $this->expectException(Throwable::class);
         $this->expectExceptionMessage('output file name is mandatory');
 
         $this->validateFiles(
@@ -69,7 +71,7 @@ class BadgeComposerTest extends TestCase
      */
     public function processFile(string $inputFile)
     {
-        $method = (new \ReflectionClass($this->badgeComposer))->getMethod('processFile');
+        $method = (new ReflectionClass($this->badgeComposer))->getMethod('processFile');
 
         return $method->invoke($this->badgeComposer, $inputFile);
     }
@@ -94,4 +96,5 @@ class BadgeComposerTest extends TestCase
 
         $this->assertEquals(83, $this->badgeComposer->getTotalCoverage());
     }
+
 }
