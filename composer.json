@@ -17,7 +17,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "CodeB\\CoverageBadge\\Tests\\": "Tests/"
+            "CodeB\\CoverageBadge\\Tests\\": "tests/"
         }
     },
     "bin": [
