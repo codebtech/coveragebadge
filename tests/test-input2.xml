@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <coverage generated="1717008513">
     <project timestamp="1717008513">
-        <file name="/var/www/html/wp-content/plugins/nuk-wp-block-plugin-template/inc/Base/ScriptsEnqueue.php">
-            <class name="NUK\WP\Inc\Base\ScriptsEnqueue" namespace="global">
+        <file name="/var/www/html/enqueue.php">
+            <class name="Base\ScriptsEnqueue" namespace="global">
                 <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="33"/>
             </class>
             <line num="28" type="method" name="register" visibility="public" complexity="1" crap="2" count="0"/>
@@ -19,8 +19,8 @@
             <line num="47" type="stmt" count="0"/>
             <metrics loc="50" ncloc="27" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="12" coveredelements="0"/>
         </file>
-        <file name="/var/www/html/wp-content/plugins/nuk-wp-block-plugin-template/inc/Init.php">
-            <class name="NUK\WP\Inc\Init" namespace="global">
+        <file name="/var/www/html/Init.php">
+            <class name="Inc\Init" namespace="global">
                 <metrics complexity="9" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="20" coveredelements="0"/>
             </class>
             <line num="32" type="method" name="get_services" visibility="public" complexity="1" crap="2" count="0"/>
@@ -44,9 +44,6 @@
             <line num="88" type="stmt" count="0"/>
             <line num="91" type="stmt" count="0"/>
             <metrics loc="94" ncloc="50" classes="1" methods="5" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="15" coveredstatements="0" elements="20" coveredelements="0"/>
-        </file>
-        <file name="/var/www/html/wp-content/plugins/nuk-wp-block-plugin-template/inc/Interfaces/Registrable.php">
-            <metrics loc="29" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
         </file>
         <metrics files="3" loc="173" ncloc="88" classes="2" methods="7" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="0" elements="32" coveredelements="0"/>
     </project>
