@@ -1,4 +1,4 @@
-name: PHP
+name: PHP lint & test
 
 on: [push, pull_request]
 
