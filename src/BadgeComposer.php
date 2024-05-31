@@ -118,7 +118,7 @@ class BadgeComposer
     private function finalizeCoverage(): void
     {
         $totalCoverage = $this->totalCoverage / count($this->inputFiles); // Average coverage across all files
-        $template = file_get_contents(__DIR__ . '/../badge-templates/badge.svg');
+        $template = file_get_contents(__DIR__ . '/../template/badge.svg');
 
         $template = str_replace('{{ total }}', $totalCoverage, $template);
 
