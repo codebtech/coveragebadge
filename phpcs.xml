@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="PHPStan deprecation rules">
+<ruleset name="CoverageBadge rules">
     <config name="php_version" value="70100"/>
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
