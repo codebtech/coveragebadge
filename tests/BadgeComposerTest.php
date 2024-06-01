@@ -112,9 +112,14 @@ class BadgeComposerTest extends TestCase
     /**
      * @throws ReflectionException
      */
-    public function finalizeCoverage()
+    public function finalizeCoverage($manipuate = false)
     {
         $method = (new ReflectionClass($this->badgeComposer))->getMethod('finalizeCoverage');
+
+        if($manipuate) {
+            $property = (new ReflectionClass($this->badgeComposer))->getProperty('badgeTemplate');
+            $property->setValue($this->badgeComposer, 'invalid.svg');
+        }
 
         return $method->invoke($this->badgeComposer);
     }
@@ -130,6 +135,17 @@ class BadgeComposerTest extends TestCase
         $this->assertStringContainsString('#e05d44', $outputFileContent);
 
         $this->assertStringContainsString('unit', $outputFileContent);
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function testFinalizeCoverageFailsWhenBadgeTemplateFileIsMissing(): void
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Error reading badge template file');
+
+        $this->finalizeCoverage(true);
     }
 
 }

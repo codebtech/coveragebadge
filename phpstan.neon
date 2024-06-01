@@ -1,0 +1,7 @@
+parameters:
+    level: max
+    paths:
+        - coverage-badge.php
+        - src/
+    excludePaths:
+        - tests/*

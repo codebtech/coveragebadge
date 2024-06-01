@@ -22,9 +22,13 @@ use function str_replace;
  */
 class BadgeComposer
 {
+    /**
+     * @var string[]
+     */
     private array $inputFiles;
     private string $outputFile;
     private string $coverageName;
+    private string $badgeTemplate = __DIR__ . '/../template/badge.svg';
     private int $totalCoverage = 0;
     private int $totalElements = 0;
     private int $checkedElements = 0;
@@ -56,7 +60,7 @@ class BadgeComposer
      *
      * This method checks if the input files exist and if the output file is provided.
      *
-     * @param array $inputFiles The array of input files to validate.
+     * @param string[] $inputFiles The array of input files to validate.
      * @param string $outputFile The output file to validate.
      *
      * @throws Exception If any of the input files do not exist or if the output file is not provided.
@@ -128,7 +132,11 @@ class BadgeComposer
     private function finalizeCoverage(): void
     {
         $totalCoverage = $this->totalCoverage / count($this->inputFiles); // Average coverage across all files
-        $template = file_get_contents(__DIR__ . '/../template/badge.svg');
+        $template = file_get_contents($this->badgeTemplate);
+
+        if($template === false) {
+            throw new Exception('Error reading badge template file');
+        }
 
         $template = str_replace('{{ total }}', (string) $totalCoverage, $template);
 
