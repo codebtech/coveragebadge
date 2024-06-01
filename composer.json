@@ -12,6 +12,9 @@
     "homepage": "https://github.com/codebtech/coveragebadge",
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
+        "phpstan/phpstan": "^1.11",
+        "phpstan/phpstan-deprecation-rules": "^1.2",
+        "phpstan/phpstan-strict-rules": "^1.6",
         "phpunit/phpunit": "^11.1",
         "slevomat/coding-standard": "^8.15",
         "squizlabs/php_codesniffer": "^3.10"
@@ -42,6 +45,7 @@
         "lint": "phpcs",
         "lint:fix": "phpcbf",
         "php:badge": "bin/coverage-badge coverage/clover.xml badges/php.svg PHP",
+        "phpstan": "phpstan analyse --memory-limit=2048M",
         "test": "phpunit --testdox --coverage-clover coverage/clover.xml --coverage-html coverage --coverage-filter src/"
     }
 }
