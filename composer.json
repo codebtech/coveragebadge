@@ -1,18 +1,27 @@
 {
     "name": "codebtech/coveragebadge",
     "description": "Creates code coverage badge from Clover XML files.",
-    "type": "library",
     "license": "MIT",
-    "homepage": "https://github.com/codebtech/coveragebadge",
+    "type": "library",
     "authors": [
         {
             "name": "Mohan Raj",
             "homepage": "https://github.com/m0hanraj"
         }
     ],
+    "homepage": "https://github.com/codebtech/coveragebadge",
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.42",
+        "phpunit/phpunit": "^11.1",
+        "slevomat/coding-standard": "^8.15",
+        "squizlabs/php_codesniffer": "^3.10"
+    },
     "autoload": {
         "psr-4": {
-            "CodeB\\CoverageBadge\\": ["","src/"]
+            "CodeB\\CoverageBadge\\": [
+                "",
+                "src/"
+            ]
         }
     },
     "autoload-dev": {
@@ -23,20 +32,16 @@
     "bin": [
         "bin/coverage-badge"
     ],
-    "require-dev": {
-        "squizlabs/php_codesniffer": "^3.10",
-        "phpunit/phpunit": "^11.1",
-        "slevomat/coding-standard": "^8.15"
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true
+        }
     },
     "scripts": {
         "lint": "phpcs",
         "lint:fix": "phpcbf",
-        "test": "phpunit --testdox --coverage-clover coverage/clover.xml --coverage-html coverage --coverage-filter src/",
-        "php:badge": "bin/coverage-badge coverage/clover.xml badges/php.svg PHP"
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+        "php:badge": "bin/coverage-badge coverage/clover.xml badges/php.svg PHP",
+        "test": "phpunit --testdox --coverage-clover coverage/clover.xml --coverage-html coverage --coverage-filter src/"
     }
 }
