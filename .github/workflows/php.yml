@@ -1,4 +1,4 @@
-name: PHP lint,scan & test
+name: PHP lint, scan & test
 
 on: [push, pull_request]
 
