@@ -1,4 +1,4 @@
-name: PHP lint & test
+name: PHP lint,scan & test
 
 on: [push, pull_request]
 
@@ -26,6 +26,12 @@ jobs:
 
       - name: Run PHPCS Lint
         run: composer lint
+
+      - name: Run PHPStan
+        run: composer phpstan
+
+      - name: Run PHPMD
+        run: composer phpmd
 
       - name: Run PHPUnit tests
         run: composer test
