@@ -29,9 +29,13 @@ class BadgeComposer
     private string $outputFile;
     private string $coverageName;
     private string $badgeTemplate = __DIR__ . '/../template/badge.svg';
-    private int $totalCoverage = 0;
-    private int $totalElements = 0;
-    private int $checkedElements = 0;
+    private array $totalCoverage = [];
+    private int $totalConditionals = 0;
+    private int $coveredConditionals = 0;
+    private int $totalStatements = 0;
+    private int $coveredStatements = 0;
+    private int $totalMethods = 0;
+    private int $coveredMethods = 0;
 
     /**
      * @throws Exception
@@ -52,7 +56,7 @@ class BadgeComposer
      */
     public function getTotalCoverage(): int
     {
-        return $this->totalCoverage;
+        return array_sum($this->totalCoverage);
     }
 
     /**
@@ -112,12 +116,18 @@ class BadgeComposer
             $xml = new SimpleXMLElement($content);
             $metrics = $xml->xpath('//metrics');
             foreach ($metrics as $metric) {
-                $this->totalElements   += (int) $metric['elements'];
-                $this->checkedElements += (int) $metric['coveredelements'];
+                $this->totalConditionals   += (int) $metric['conditionals'];
+                $this->coveredConditionals += (int) $metric['coveredconditionals'];
+                $this->totalStatements    += (int) $metric['statements'];
+                $this->coveredStatements  += (int) $metric['coveredstatements'];
+                $this->totalMethods       += (int) $metric['methods'];
+                $this->coveredMethods     += (int) $metric['coveredmethods'];
             }
 
-            $coverageRatio = $this->totalElements ? $this->checkedElements / $this->totalElements : 0;
-            $this->totalCoverage += (int) round($coverageRatio * 100);
+            $totalElements = $this->totalConditionals + $this->totalStatements + $this->totalMethods;
+            $coveredElements = $this->coveredConditionals + $this->coveredStatements + $this->coveredMethods;
+            $coverageRatio = $totalElements ? $coveredElements / $totalElements : 0;
+            $this->totalCoverage[] = (int) round($coverageRatio * 100);
 
         } catch (Throwable $e) {
             throw new Exception($e->getMessage());
@@ -131,7 +141,7 @@ class BadgeComposer
      */
     private function finalizeCoverage(): void
     {
-        $totalCoverage = $this->totalCoverage / count($this->inputFiles); // Average coverage across all files
+        $totalCoverage = $this->getTotalCoverage() / count($this->inputFiles); // Average coverage across all files
         $template = file_get_contents($this->badgeTemplate);
 
         if($template === false) {
