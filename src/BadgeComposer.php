@@ -13,7 +13,6 @@ use function file_get_contents;
 use function file_put_contents;
 use function round;
 use function str_replace;
-use function var_dump;
 
 /**
  * Class BadgeComposer
@@ -148,7 +147,6 @@ class BadgeComposer
      */
     private function finalizeCoverage(): void
     {
-        var_dump($this->totalCoverage);
         $totalCoverage = $this->getTotalCoverage() / count($this->inputFiles); // Average coverage across all files
         $template = file_get_contents($this->badgeTemplate);
 
