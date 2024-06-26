@@ -5,6 +5,7 @@ namespace CodeB\CoverageBadge;
 use Exception;
 use SimpleXMLElement;
 use Throwable;
+use function array_sum;
 use function count;
 use function explode;
 use function file_exists;
@@ -29,6 +30,9 @@ class BadgeComposer
     private string $outputFile;
     private string $coverageName;
     private string $badgeTemplate = __DIR__ . '/../template/badge.svg';
+    /**
+     * @var int[]
+     */
     private array $totalCoverage = [];
     private int $totalConditionals = 0;
     private int $coveredConditionals = 0;
