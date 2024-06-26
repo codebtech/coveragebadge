@@ -34,12 +34,6 @@ class BadgeComposer
      * @var int[]
      */
     private array $totalCoverage = [];
-    private int $totalConditionals = 0;
-    private int $coveredConditionals = 0;
-    private int $totalStatements = 0;
-    private int $coveredStatements = 0;
-    private int $totalMethods = 0;
-    private int $coveredMethods = 0;
 
     /**
      * @throws Exception
@@ -119,17 +113,25 @@ class BadgeComposer
             }
             $xml = new SimpleXMLElement($content);
             $metrics = $xml->xpath('//metrics');
+
+            $totalConditionals = 0;
+            $totalStatements = 0;
+            $totalMethods = 0;
+            $coveredStatements = 0;
+            $coveredConditionals = 0;
+            $coveredMethods = 0;
+
             foreach ($metrics as $metric) {
-                $this->totalConditionals   += (int) $metric['conditionals'];
-                $this->coveredConditionals += (int) $metric['coveredconditionals'];
-                $this->totalStatements    += (int) $metric['statements'];
-                $this->coveredStatements  += (int) $metric['coveredstatements'];
-                $this->totalMethods       += (int) $metric['methods'];
-                $this->coveredMethods     += (int) $metric['coveredmethods'];
+                $totalConditionals   = (int) $metric['conditionals'];
+                $coveredConditionals = (int) $metric['coveredconditionals'];
+                $totalStatements    = (int) $metric['statements'];
+                $coveredStatements  = (int) $metric['coveredstatements'];
+                $totalMethods       = (int) $metric['methods'];
+                $coveredMethods     = (int) $metric['coveredmethods'];
             }
 
-            $totalElements = $this->totalConditionals + $this->totalStatements + $this->totalMethods;
-            $coveredElements = $this->coveredConditionals + $this->coveredStatements + $this->coveredMethods;
+            $totalElements = $totalConditionals + $totalStatements + $totalMethods;
+            $coveredElements = $coveredConditionals + $coveredStatements + $coveredMethods;
             $coverageRatio = $totalElements ? $coveredElements / $totalElements : 0;
             $this->totalCoverage[] = (int) round($coverageRatio * 100);
 
@@ -152,7 +154,7 @@ class BadgeComposer
             throw new Exception('Error reading badge template file');
         }
 
-        $template = str_replace('{{ total }}', (string) $totalCoverage, $template);
+        $template = str_replace('{{ total }}', (string) round($totalCoverage), $template);
 
         $template = str_replace('{{ coverage }}', $this->coverageName, $template);
 
