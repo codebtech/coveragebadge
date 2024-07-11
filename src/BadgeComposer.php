@@ -122,12 +122,12 @@ class BadgeComposer
             $coveredMethods = 0;
 
             foreach ($metrics as $metric) {
-                $totalConditionals   = (int) $metric['conditionals'];
-                $coveredConditionals = (int) $metric['coveredconditionals'];
-                $totalStatements    = (int) $metric['statements'];
-                $coveredStatements  = (int) $metric['coveredstatements'];
-                $totalMethods       = (int) $metric['methods'];
-                $coveredMethods     = (int) $metric['coveredmethods'];
+                $totalConditionals   += (int) $metric['conditionals'];
+                $coveredConditionals += (int) $metric['coveredconditionals'];
+                $totalStatements    += (int) $metric['statements'];
+                $coveredStatements  += (int) $metric['coveredstatements'];
+                $totalMethods       += (int) $metric['methods'];
+                $coveredMethods     += (int) $metric['coveredmethods'];
             }
 
             $totalElements = $totalConditionals + $totalStatements + $totalMethods;
