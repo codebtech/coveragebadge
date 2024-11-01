@@ -116,22 +116,18 @@ class BadgeComposer
 
             $totalConditionals = 0;
             $totalStatements = 0;
-            $totalMethods = 0;
             $coveredStatements = 0;
             $coveredConditionals = 0;
-            $coveredMethods = 0;
 
             foreach ($metrics as $metric) {
                 $totalConditionals   += (int) $metric['conditionals'];
                 $coveredConditionals += (int) $metric['coveredconditionals'];
                 $totalStatements    += (int) $metric['statements'];
                 $coveredStatements  += (int) $metric['coveredstatements'];
-                $totalMethods       += (int) $metric['methods'];
-                $coveredMethods     += (int) $metric['coveredmethods'];
             }
 
-            $totalElements = $totalConditionals + $totalStatements + $totalMethods;
-            $coveredElements = $coveredConditionals + $coveredStatements + $coveredMethods;
+            $totalElements = $totalConditionals + $totalStatements;
+            $coveredElements = $coveredConditionals + $coveredStatements;
             $coverageRatio = $totalElements ? $coveredElements / $totalElements : 0;
             $this->totalCoverage[] = (int) round($coverageRatio * 100);
 
