@@ -1,5 +1,5 @@
 # Use the official PHP 8.2 image from Docker Hub
-FROM php:8.3-cli
+FROM php:8.4-cli
 
 # Install Xdebug extension
 RUN pecl install xdebug && docker-php-ext-enable xdebug
