@@ -1,6 +1,6 @@
 # CoverageBadge
 
-[![PHP lint & test](https://github.com/codebtech/coveragebadge/actions/workflows/php.yml/badge.svg)](https://github.com/codebtech/coveragebadge/actions/workflows/php.yml) ![](./badges/php.svg)
+[![PHP lint & test](https://github.com/codebtech/coveragebadge/actions/workflows/php.yml/badge.svg)](https://github.com/codebtech/coveragebadge/actions/workflows/php.yml) ![PHP Code Coverage](./badges/php.svg) ![Packagist dowloads](https://img.shields.io/packagist/dt/codebtech/coveragebadge?logoColor=fff&label=packagist)
 
 
 CoverageBadge is a PHP library for creating SVG coverage badges from Clover XML files.
